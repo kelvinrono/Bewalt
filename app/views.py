@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+
+from .models import Gallery
 from .forms import ClientForm
 
 from django.contrib import messages
@@ -38,3 +40,13 @@ def email(request):
     }
 
     return render(request, 'index.html',params)
+
+
+def projects(request):
+    
+    projects=Gallery.objects.all()
+
+    context={
+        'projects':projects
+    }
+    return render(request, 'projects.html', context)
